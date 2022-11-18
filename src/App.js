@@ -16,16 +16,16 @@ function App() {
   const [searchValue, setSearchValue] = useState("")
 
   const [productsState, setProductsState] = useState([])
-
+  
   useEffect(()=>{
 
     fetch('https://www.googleapis.com/books/v1/volumes?q=search+terms')
       .then(res=>res.json())
       .then((productsArray)=> {
-        console.log(productsArray)
         const newProudctsState = productsArray.items.map((product)=>{
-          return product.volumeInfo.title
+          return product.volumeInfo
         })
+        
         setProductsState(newProudctsState)
       })
 
@@ -50,7 +50,7 @@ function App() {
         <Routes>
           <Route path="/search" element={<Search products = {productsState}/>}>
           </Route>
-          <Route path="/wishlist" element={<WishList/>}>
+          <Route path="/wishlist" element={<WishList />}>
           </Route>
           <Route path="/" element={<Home data={searchValue} setData={setSearchValue}/>}>
           </Route>

@@ -10,6 +10,7 @@ const Home = (props) => {
     const handleClick = () =>
     {
         localStorage.setItem("username", props.data)
+        localStorage.setItem("Wishlist", JSON.stringify([]))
         window.location = "/search"
     }
     
@@ -17,6 +18,7 @@ const Home = (props) => {
 
     return (<div>
         Please enter your username:
+        <br></br>
         <input type = "text" value={props.data} onChange={handleInputChange}/>
         {shouldDisplayButton && <button onClick={handleClick}>submit</button>}
         
